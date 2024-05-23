@@ -1,14 +1,16 @@
+package Day1;
 import java.util.Scanner;
 
-public class dec_to_binary {
-    int maxSize, tos, stack[];
+public class reverse_string {
+    int maxSize, tos;
+    char stack[];
     //create stack: stack, init tos -1 and prepare stack for use
     void create_Stack(int size){
         maxSize = size;
         tos = -1;
-        stack = new int[maxSize];
+        stack = new char[maxSize];
     }
-    void push(int item){
+    void push(char item){
         stack[++tos]=item; //first increment tos, then put item in stack
     }
     //isFull(): returns true if stack is full else false
@@ -34,22 +36,13 @@ public class dec_to_binary {
     }
 
     public static void main(String[] args) {
-        int size=64;//64 bit of processing
-        dec_to_binary db = new dec_to_binary();
+        reverse_string rs = new reverse_string();
         Scanner sc = new Scanner(System.in);
-        db.create_Stack(size);
-        int val;
-        val = sc.nextInt();
-        
-        while(val/2 != 0){
-            int remainder;
-            int quotient;
-            remainder = val%2;
-            db.push(remainder);
-            quotient = val/2;
-            val = quotient;
+        String s = sc.nextLine();
+        rs.create_Stack(s.length());
+        for(char c : s.toCharArray()){
+            rs.push(c);
         }
-        db.push(val%2);
-        db.printStack();
+        rs.printStack();
     }
 }

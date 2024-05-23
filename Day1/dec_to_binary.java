@@ -1,15 +1,15 @@
+package Day1;
 import java.util.Scanner;
 
-public class valid_paranthesis {
-    int maxSize, tos;
-    char stack[];
+public class dec_to_binary {
+    int maxSize, tos, stack[];
     //create stack: stack, init tos -1 and prepare stack for use
     void create_Stack(int size){
         maxSize = size;
         tos = -1;
-        stack = new char[maxSize];
+        stack = new int[maxSize];
     }
-    void push(char item){
+    void push(int item){
         stack[++tos]=item; //first increment tos, then put item in stack
     }
     //isFull(): returns true if stack is full else false
@@ -33,32 +33,24 @@ public class valid_paranthesis {
         for(int i=tos; i>=0; i--)
             System.out.println(stack[i]);
     }
+
     public static void main(String[] args) {
-        valid_paranthesis vp = new valid_paranthesis();
+        int size=64;//64 bit of processing
+        dec_to_binary db = new dec_to_binary();
         Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        vp.create_Stack(s.length());
-        int count = 0;
-        for(char c : s.toCharArray()){
-            if(c == '{'){
-                vp.push(c);
-                count++;
-            }
-            else if(c == '}'){
-                if(!vp.isEmpty()){
-                    vp.pop();
-                }
-                else{
-                    System.out.println("Unexpected }");
-                }
-                count--;
-            }
+        db.create_Stack(size);
+        int val;
+        val = sc.nextInt();
+        
+        while(val/2 != 0){
+            int remainder;
+            int quotient;
+            remainder = val%2;
+            db.push(remainder);
+            quotient = val/2;
+            val = quotient;
         }
-        if(count > 0 ){
-            System.out.println("expected }");
-        }
-        else if (count == 0){
-            System.out.println("valid");
-        }
+        db.push(val%2);
+        db.printStack();
     }
 }

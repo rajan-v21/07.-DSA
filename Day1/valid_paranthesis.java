@@ -1,6 +1,7 @@
+package Day1;
 import java.util.Scanner;
 
-public class reverse_string {
+public class valid_paranthesis {
     int maxSize, tos;
     char stack[];
     //create stack: stack, init tos -1 and prepare stack for use
@@ -33,15 +34,32 @@ public class reverse_string {
         for(int i=tos; i>=0; i--)
             System.out.println(stack[i]);
     }
-
     public static void main(String[] args) {
-        reverse_string rs = new reverse_string();
+        valid_paranthesis vp = new valid_paranthesis();
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
-        rs.create_Stack(s.length());
+        vp.create_Stack(s.length());
+        int count = 0;
         for(char c : s.toCharArray()){
-            rs.push(c);
+            if(c == '{'){
+                vp.push(c);
+                count++;
+            }
+            else if(c == '}'){
+                if(!vp.isEmpty()){
+                    vp.pop();
+                }
+                else{
+                    System.out.println("Unexpected }");
+                }
+                count--;
+            }
         }
-        rs.printStack();
+        if(count > 0 ){
+            System.out.println("expected }");
+        }
+        else if (count == 0){
+            System.out.println("valid");
+        }
     }
 }
