@@ -43,5 +43,6 @@ public class reverse_string {
             rs.push(c);
         }
         rs.printStack();
+        sc.close();
     }
 }

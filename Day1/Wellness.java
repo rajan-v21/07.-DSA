@@ -78,5 +78,5 @@ public class Wellness
         else{
             System.out.println("Wellness Check Successful");
         }
-        }
     }
+}

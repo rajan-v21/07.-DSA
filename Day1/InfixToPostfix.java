@@ -94,5 +94,6 @@ public class InfixToPostfix {
         for (int i = 0; i < k; i++) {
             System.out.print(postfix[i]);
         }
+        sc.close();
     }
 }

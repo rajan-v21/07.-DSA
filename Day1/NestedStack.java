@@ -126,5 +126,6 @@ public class NestedStack {
                     System.out.println("Invalid choice");
             }
         } while (choice != 0);
+        sc.close();
     }
 }

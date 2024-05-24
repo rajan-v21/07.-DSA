@@ -51,5 +51,6 @@ public class dec_to_binary {
         }
         db.push(val%2);
         db.printStack();
+        sc.close();
     }
 }

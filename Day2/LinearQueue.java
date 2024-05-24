@@ -1,5 +1,4 @@
-import java.util.*;
-public class Queue_basic {
+public class LinearQueue {
     int front, rear, size;
     int capacity;
     int arr[];
@@ -38,7 +37,8 @@ public class Queue_basic {
     }
 
     public static void main(String[] args) {
-        Queue_basic q = new Queue_basic();
+        LinearQueue q = new LinearQueue();
+
         q.createQueue(5);
         q.enqueue(10);
         q.enqueue(20);

@@ -60,5 +60,6 @@ public class valid_paranthesis {
         else if (count == 0){
             System.out.println("valid");
         }
+        sc.close();
     }
 }
