@@ -170,5 +170,6 @@ class LinearLinkedList{
                     System.out.println("Invalid choice");
             }
         }while(choice!=0);
+        sc.close();
     }
 }

@@ -12,8 +12,8 @@ public class DoublyLinkedList {
             root=n;
         }
         else{
-            n.next=root;
-            root.prev=n;
+            n.right=root;
+            root.left=n;
             root=n;
         }
     }
@@ -24,11 +24,11 @@ public class DoublyLinkedList {
         }
         else{
             DNode temp = root;
-            while(temp.next!=null){
-                temp=temp.next;
+            while(temp.right!=null){
+                temp=temp.right;
             }
-            temp.next=n;
-            n.prev=temp;
+            temp.right=n;
+            n.left=temp;
         }
     }
 
@@ -40,7 +40,7 @@ public class DoublyLinkedList {
             DNode temp = root;
             while(temp!=null){
                 System.out.print("|"+temp.data+"|->");
-                temp=temp.next;
+                temp=temp.right;
             }
         }
     }
@@ -50,12 +50,12 @@ public class DoublyLinkedList {
         }
         else{
             DNode temp = root;
-            while(temp.next!=null){
-                temp=temp.next;
+            while(temp.right!=null){
+                temp=temp.right;
             }
             while(temp!=null){
                 System.out.print("|"+temp.data+"|->");
-                temp=temp.prev;
+                temp=temp.left;
             }
         }
     }
@@ -66,8 +66,8 @@ public class DoublyLinkedList {
         }
         else{
             System.out.println("Deleted: "+root.data);
-            root=root.next;
-            root.prev=null;
+            root=root.right;
+            root.left=null;
         }
     }
     void deleteRight(){
@@ -76,11 +76,11 @@ public class DoublyLinkedList {
         }
         else{
             DNode temp = root;
-            while(temp.next!=null){
-                temp=temp.next;
+            while(temp.right!=null){
+                temp=temp.right;
             }
             System.out.println("Deleted: "+temp.data);
-            temp.prev.next=null;
+            temp.left.right=null;
         }
     }
     void deleteAt(int pos){
@@ -90,7 +90,7 @@ public class DoublyLinkedList {
         else{
             DNode temp = root;
             while(pos>1 && temp!=null){
-                temp=temp.next;
+                temp=temp.right;
                 pos--;
             }
             if(temp==null){
@@ -98,8 +98,8 @@ public class DoublyLinkedList {
             }
             else{
                 System.out.println("Deleted: "+temp.data);
-                temp.prev.next=temp.next;
-                temp.next.prev=temp.prev;
+                temp.left.right=temp.right;
+                temp.right.left=temp.left;
             }
         }
     }
@@ -111,17 +111,17 @@ public class DoublyLinkedList {
         else{
             DNode temp = root;
             while(pos>1 && temp!=null){
-                temp=temp.next;
+                temp=temp.right;
                 pos--;
             }
             if(temp==null){
                 System.out.println("Position out of range");
             }
             else{
-                n.next=temp.next;
-                n.prev=temp;
-                temp.next=n;
-                n.next.prev=n;
+                n.right=temp.right;
+                n.left=temp;
+                temp.right=n;
+                n.right.left=n;
             }
         }
     }

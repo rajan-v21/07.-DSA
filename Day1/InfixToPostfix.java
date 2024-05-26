@@ -57,7 +57,7 @@ public class InfixToPostfix {
         InfixToPostfix obj = new InfixToPostfix();
         obj.create_Stack(exp.length);
         int k = 0; // Index for postfix array
-
+        sc.close();
         for (int i = 0; i < exp.length; i++) {
             // If the character is an operand, add it to output
             if (Character.isLetterOrDigit(exp[i])) {
@@ -94,6 +94,6 @@ public class InfixToPostfix {
         for (int i = 0; i < k; i++) {
             System.out.print(postfix[i]);
         }
-        sc.close();
+        
     }
 }

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Wellness
+public class ValidMixParanthesis
 {
         int MaxSize,tos;
         char stack[];
@@ -58,7 +58,7 @@ public class Wellness
             Scanner in = new Scanner(System.in);
             System.out.println("Enter to Check:");// read a word from user
             String line=in.next();
-            Wellness obj=new Wellness();
+            ValidMixParanthesis obj=new ValidMixParanthesis();
             obj.create_Stack(line.length());
             if((line.length())%2 != 0) System.out.println("Invalid Input");;
         for(char ch : line.toCharArray()){

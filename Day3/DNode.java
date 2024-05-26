@@ -1,8 +1,8 @@
 public class DNode {
-    DNode next, prev;
+    DNode left, right;
     int data;
     DNode(int data){
         this.data = data;
-        next=prev=null;
+        left=right=null;
     }
 }
