@@ -21,11 +21,11 @@ public class valid_paranthesis {
         return (tos == -1);
     }
     //pop(): returns top item and removes it from stack
-    int pop(){
+    char pop(){
         return stack[tos--];
     }
     //peek(): returns top item without removing it from stack
-    int peek(){
+    char peek(){
         return stack[tos];
     }
     //printStack(): prints all items in stack in LIFO order
@@ -34,32 +34,31 @@ public class valid_paranthesis {
             System.out.println(stack[i]);
     }
     public static void main(String[] args) {
+        boolean flag=true;
+        char temp;
         valid_paranthesis vp = new valid_paranthesis();
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
         vp.create_Stack(s.length());
-        int count = 0;
-        for(char c : s.toCharArray()){
-            if(c == '{'){
-                vp.push(c);
-                count++;
-            }
-            else if(c == '}'){
-                if(!vp.isEmpty()){
-                    vp.pop();
+        for(int i=0;i<s.length();i++)// and push in stack
+            {
+                char c = s.charAt(i);
+                if (c == '{')
+                    vp.push(c);
+                else if (c == '}' && vp.isEmpty()!=true)
+                    temp = vp.pop();
+                else if(c == '}' && vp.isEmpty()==true)
+                {
+                    System.out.println("Error:} unexpected");
+                    flag = false;
+                    break;
                 }
-                else{
-                    System.out.println("Unexpected }");
-                }
-                count--;
+
             }
-        }
-        if(count > 0 ){
-            System.out.println("expected }");
-        }
-        else if (count == 0){
-            System.out.println("valid");
-        }
+            if(vp.isEmpty()==true && flag==true)
+                System.out.println("Perfectly balanced:.....");
+            else if(!vp.isEmpty())
+                System.out.println("Error: } is expected");
         sc.close();
     }
 }

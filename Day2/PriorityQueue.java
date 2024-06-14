@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+ 
 public class PriorityQueue {
     int queue[],MaxSize,front,rear;
     void createQueue(int size)
@@ -9,7 +9,7 @@ public class PriorityQueue {
         MaxSize=size;
         queue=new int[MaxSize];
 
-    }
+    } 
     void enqueue(int element)
     {
         //accept element in queue then sort the queue

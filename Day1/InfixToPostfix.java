@@ -50,50 +50,67 @@ public class InfixToPostfix {
         return -1;
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        char exp[] = sc.nextLine().toCharArray();
-        char postfix[] = new char[exp.length];
-        InfixToPostfix obj = new InfixToPostfix();
-        obj.create_Stack(exp.length);
+    // Method to return associativity of operators
+    boolean isRightAssociative(char op) {
+        if (op == '^') {
+            return true; // '^' operator is right associative
+        }
+        return false; // Other operators are left associative
+    }
+
+    void infixToPostfix(char[] exp, char[] postfix) {
+        create_Stack(exp.length);
         int k = 0; // Index for postfix array
-        sc.close();
-        for (int i = 0; i < exp.length; i++) {
+
+        for (char ch : exp) {
             // If the character is an operand, add it to output
-            if (Character.isLetterOrDigit(exp[i])) {
-                postfix[k++] = exp[i];
+            if (Character.isLetterOrDigit(ch)) {
+                postfix[k++] = ch;
             }
             // If the character is '(', push it to stack
-            else if (exp[i] == '(') {
-                obj.push(exp[i]);
+            else if (ch == '(') {
+                push(ch);
             }
             // If the character is ')', pop and output from the stack
             // until an '(' is encountered
-            else if (exp[i] == ')') {
-                while (!obj.isEmpty() && obj.peek() != '(') {
-                    postfix[k++] = obj.pop();
+            else if (ch == ')') {
+                while (!isEmpty() && peek() != '(') {
+                    postfix[k++] = pop();
                 }
-                if (!obj.isEmpty() && obj.peek() != '(') {
+                if (!isEmpty() && peek() != '(') {
                     return; // Invalid expression
                 } else {
-                    obj.pop();
+                    pop();
                 }
-            } else { // An operator is encountered
-                while (!obj.isEmpty() && obj.precedence(exp[i]) <= obj.precedence(obj.peek())) {
-                    postfix[k++] = obj.pop();
+            } 
+            else { // An operator is encountered
+                while (!isEmpty() && precedence(ch) < precedence(peek()) ||
+                       (!isEmpty() && precedence(ch) == precedence(peek()) && !isRightAssociative(ch))) {
+                    postfix[k++] = pop();
                 }
-                obj.push(exp[i]);
+                push(ch);
             }
         }
 
         // Pop all the operators from the stack
-        while (!obj.isEmpty()) {
-            postfix[k++] = obj.pop();
+        while (!isEmpty()) {
+            postfix[k++] = pop();
         }
 
+        // Print the postfix expression
         for (int i = 0; i < k; i++) {
             System.out.print(postfix[i]);
         }
-        
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter infix expression:");
+        String input = sc.nextLine();
+        char exp[] = input.toCharArray();
+        char postfix[] = new char[exp.length];
+        InfixToPostfix obj = new InfixToPostfix();
+        obj.infixToPostfix(exp, postfix);
+        sc.close();
     }
 }
